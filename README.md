@@ -1,8 +1,8 @@
-# DTO без боли: как class-transformer упрощает жизнь в Angular
+# DTO без боли: как class-transformer упрощает работу с данными
 
 ## 🎯 Описание презентации
 
-Презентация для Angular meetup о том, как использовать class-transformer для работы с DTO в Angular приложениях. Показываем реальные примеры из production проектов.
+Презентация о том, как использовать class-transformer для работы с DTO в TypeScript приложениях. Подходит для Angular, React, Node.js и других TypeScript проектов. Показываем реальные примеры из production проектов.
 
 ## 📁 Структура проекта
 
@@ -12,7 +12,7 @@ angular-meetup-presentation/
 ├── presentation.md                     # Основная презентация (Markdown)
 ├── installation-guide.md               # Руководство по установке
 ├── best-practices.md                   # Лучшие практики
-├── class-transformer-angular/          # 🚀 Slidev презентация
+├── class-transformer-presentation/     # 🚀 Slidev презентация
 │   ├── slides.md                       # Интерактивная презентация
 │   ├── snippets/                       # Примеры кода
 │   ├── components/                     # Vue компоненты
@@ -34,7 +34,7 @@ angular-meetup-presentation/
 
 ### Интерактивная презентация (Slidev)
 ```bash
-cd class-transformer-angular
+cd class-transformer-presentation
 npm run dev
 ```
 
@@ -83,7 +83,7 @@ npm run export-pptx
 
 ## 🛠 Технологии
 
-- **Angular** - основной фреймворк
+- **TypeScript** - основной язык
 - **class-transformer** - библиотека для преобразования объектов
 - **RxJS** - реактивное программирование
 - **TypeScript** - типизированный JavaScript
@@ -94,7 +94,7 @@ npm run export-pptx
 
 - [class-transformer документация](https://github.com/typestack/class-transformer)
 - [class-validator документация](https://github.com/typestack/class-validator)
-- [Angular HTTP Guide](https://angular.io/guide/http)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [TypeScript Decorators](https://www.typescriptlang.org/docs/handbook/decorators.html)
 - [Slidev документация](https://sli.dev)
 

@@ -2,7 +2,7 @@
 
 ## Описание
 
-`MapTo` - это кастомный декоратор для Angular, который автоматически преобразует plain objects в экземпляры классов с помощью `class-transformer`.
+`MapTo` - это кастомный декоратор для TypeScript, который автоматически преобразует plain objects в экземпляры классов с помощью `class-transformer`.
 
 ## Исходный код
 
@@ -46,11 +46,12 @@ export const MapTo =
 ### Базовый пример
 
 ```typescript
-@Injectable()
 export class UserApiService {
   @MapTo(User)
-  getUser(id: string): Observable<User> {
-    return this.http.get(`/api/users/${id}`);
+  async getUser(id: string): Promise<User> {
+    const response = await fetch(`/api/users/${id}`);
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 }
 ```
@@ -59,23 +60,23 @@ export class UserApiService {
 
 ```typescript
 // Без декоратора (ручное преобразование)
-getUser(id: string): Observable<User> {
-  return this.http.get(`/api/users/${id}`).pipe(
-    map((data: any) => {
-      return {
-        id: data.id,
-        name: data.name,
-        createdAt: new Date(data.createdAt),
-        avatar: data.avatar ? new Avatar(data.avatar) : null
-      } as User;
-    })
-  );
+async getUser(id: string): Promise<User> {
+  const response = await fetch(`/api/users/${id}`);
+  const data = await response.json();
+  return {
+    id: data.id,
+    name: data.name,
+    createdAt: new Date(data.createdAt),
+    avatar: data.avatar ? new Avatar(data.avatar) : null
+  } as User;
 }
 
 // С декоратором (автоматическое преобразование)
 @MapTo(User)
-getUser(id: string): Observable<User> {
-  return this.http.get(`/api/users/${id}`);
+async getUser(id: string): Promise<User> {
+  const response = await fetch(`/api/users/${id}`);
+  const data = await response.json();
+  return plainToInstance(User, data);
 }
 ```
 
@@ -98,21 +99,23 @@ getUser(id: string): Observable<User> {
 ### UsersApiService
 
 ```typescript
-@Injectable({
-  providedIn: 'root',
-})
 export class UsersApiService {
-  readonly #apiService = inject(ApiService);
-
   @MapTo(User)
-  getProfile(): Observable<User> {
-    return this.#apiService.get<User>(USERS_PROFILE_PATH);
+  async getProfile(): Promise<User> {
+    const response = await fetch('/api/users/profile');
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 
   @MapTo(User)
-  updateUser(user: Partial<User>): Observable<User> {
+  async updateUser(user: Partial<User>): Promise<User> {
     const transformedUser = mapInstanceToPlain(User, user);
-    return this.#apiService.patch<User>(USERS_PROFILE_PATH, transformedUser);
+    const response = await fetch('/api/users/profile', {
+      method: 'PATCH',
+      body: JSON.stringify(transformedUser)
+    });
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 }
 ```
@@ -120,16 +123,23 @@ export class UsersApiService {
 ### AccountsApiService
 
 ```typescript
-@Injectable()
 export class AccountsApiService {
   @MapTo(Account)
-  getAccount(id: string): Observable<Account> {
-    return this.http.get(`/api/accounts/${id}`);
+  async getAccount(id: string): Promise<Account> {
+    const response = await fetch(`/api/accounts/${id}`);
+    const data = await response.json();
+    return plainToInstance(Account, data);
   }
 
   @MapTo(Account)
-  createAccount(account: Partial<Account>): Observable<Account> {
-    return this.http.post('/api/accounts', account);
+  async createAccount(account: Partial<Account>): Promise<Account> {
+    const transformedAccount = mapInstanceToPlain(Account, account);
+    const response = await fetch('/api/accounts', {
+      method: 'POST',
+      body: JSON.stringify(transformedAccount)
+    });
+    const data = await response.json();
+    return plainToInstance(Account, data);
   }
 }
 ```

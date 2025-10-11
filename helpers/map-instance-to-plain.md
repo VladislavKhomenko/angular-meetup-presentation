@@ -68,18 +68,27 @@ updateUser(user: Partial<User>): Observable<User> {
 ### Базовый пример
 
 ```typescript
-@Injectable()
 export class UserApiService {
   @MapTo(User)
-  updateUser(user: Partial<User>): Observable<User> {
+  async updateUser(user: Partial<User>): Promise<User> {
     const transformedUser = mapInstanceToPlain(User, user);
-    return this.http.patch('/api/user', transformedUser);
+    const response = await fetch('/api/user', {
+      method: 'PATCH',
+      body: JSON.stringify(transformedUser)
+    });
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 
   @MapTo(User)
-  createUser(user: Partial<User>): Observable<User> {
+  async createUser(user: Partial<User>): Promise<User> {
     const transformedUser = mapInstanceToPlain(User, user);
-    return this.http.post('/api/user', transformedUser);
+    const response = await fetch('/api/user', {
+      method: 'POST',
+      body: JSON.stringify(transformedUser)
+    });
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 }
 ```
@@ -154,16 +163,16 @@ export class User {
 ### UsersApiService
 
 ```typescript
-@Injectable({
-  providedIn: 'root',
-})
 export class UsersApiService {
-  readonly #apiService = inject(ApiService);
-
   @MapTo(User)
-  updateUser(user: Partial<User>): Observable<User> {
+  async updateUser(user: Partial<User>): Promise<User> {
     const transformedUser = mapInstanceToPlain(User, user);
-    return this.#apiService.patch<User>(USERS_PROFILE_PATH, transformedUser);
+    const response = await fetch('/api/users/profile', {
+      method: 'PATCH',
+      body: JSON.stringify(transformedUser)
+    });
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 }
 ```

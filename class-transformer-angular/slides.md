@@ -3,11 +3,11 @@ theme: seriph
 background: https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
 title: DTO без боли
 info: |
-  ## DTO без боли: как class-transformer упрощает жизнь в Angular
+  ## DTO без боли: как class-transformer упрощает жизнь
   
-  Презентация для Angular meetup о том, как использовать class-transformer для работы с DTO в Angular приложениях.
+  Презентация о том, как использовать class-transformer для работы с DTO в TypeScript приложениях.
   
-  Показываем реальные примеры из production проектов.
+  Подходит для Angular, React, Node.js и других TypeScript проектов. Показываем реальные примеры из production проектов.
 class: text-center
 drawings:
   persist: false
@@ -70,7 +70,7 @@ seoMeta:
 
 # DTO без боли
 
-## как class-transformer упрощает жизнь в Angular
+## как class-transformer упрощает работу с данными
 
 <!-- <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover:bg="white hover:bg-opacity-10">
@@ -90,7 +90,7 @@ seoMeta:
 <!--
 Привет! Меня зовут [Ваше имя], я Frontend Developer.
 
-Сегодня я расскажу о том, как class-transformer может кардинально упростить работу с DTO в Angular приложениях.
+Сегодня я расскажу о том, как class-transformer может кардинально упростить работу с DTO в TypeScript приложениях.
 -->
 
 ---
@@ -105,7 +105,7 @@ transition: fade-out
 
 ## 👨‍💻 Кто я
 - **Frontend Architect**
-- **Опыт**: 10 лет с Angular
+- **Опыт**: 10 лет с TypeScript
 
 </div>
 
@@ -113,7 +113,7 @@ transition: fade-out
 
 ## 🎯 О чем поговорим
 - Что такое DTO и зачем нужны
-- Проблемы без class-transformer
+- Проблемы сериализации данных
 - Решение с class-transformer
 - Кастомные декораторы
 - Реальные примеры из проекта
@@ -123,7 +123,7 @@ transition: fade-out
 </div>
 
 <!--
-Расскажите немного о себе и своем опыте работы с Angular.
+Расскажите немного о себе и своем опыте работы с TypeScript.
 Объясните, что это реальный production опыт, где мы активно используем class-transformer.
 -->
 
@@ -273,11 +273,12 @@ level: 2
 
 ```typescript {all|4-4|4-7}
 // ✅ Хорошо: с class-transformer
-@Injectable()
 export class UserApiService {
   @MapTo(User)
-  getUser(): Observable<User> {
-    return this.http.get('/api/user');
+  async getUser(): Promise<User> {
+    const response = await fetch('/api/user');
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 }
 ```
@@ -456,25 +457,30 @@ level: 2
 ## UsersApiService - реальный пример
 
 ```typescript {all|5-9|10-14|15-22}
-@Injectable({ providedIn: 'root' })
 export class UsersApiService {
-  readonly #apiService = inject(ApiService);
-
   @MapListTo(User)
-  getUserList(params?: ListQueryParams<User>): Observable<EntityList<User>> {
-    return this.#apiService.getList<User>(USERS_BASE_PATH, params);
+  async getUserList(params?: ListQueryParams<User>): Promise<EntityList<User>> {
+    const response = await fetch(`/api/users?${new URLSearchParams(params)}`);
+    const data = await response.json();
+    return plainToInstance(EntityList<User>, data);
   }
 
   @MapTo(User)
-  getProfile(): Observable<User> {
-    return this.#apiService.get<User>(USERS_PROFILE_PATH);
+  async getProfile(): Promise<User> {
+    const response = await fetch('/api/users/profile');
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 
   @MapTo(User)
-  updateUser(user: Partial<User>): Observable<User> {
+  async updateUser(user: Partial<User>): Promise<User> {
     const transformedUser = mapInstanceToPlain(User, user);
-
-    return this.#apiService.patch<User>(USERS_PROFILE_PATH, transformedUser);
+    const response = await fetch('/api/users/profile', {
+      method: 'PATCH',
+      body: JSON.stringify(transformedUser)
+    });
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 }
 ```
@@ -516,7 +522,7 @@ level: 2
 
 <!--
 Покажите реальный пример из production проекта. Обратите внимание на чистоту кода и отсутствие дублирования.
-Подчеркните, что вся сложная логика преобразования скрыта в декораторах.
+Подчеркните, что вся сложная логика преобразования скрыта в декораторах. Примеры универсальны для любого TypeScript проекта.
 -->
 
 ---
@@ -772,7 +778,7 @@ level: 2
 
 <!--
 Дайте практические рекомендации по использованию class-transformer.
-Основано на реальном production опыте.
+Основано на реальном production опыте в TypeScript проектах.
 -->
 
 
@@ -827,7 +833,7 @@ level: 2
 
 <!--
 Покажите альтернативы и объясните, почему выбрали именно class-transformer.
-Основано на реальном сравнении в production проектах.
+Основано на реальном сравнении в production TypeScript проектах.
 -->
 
 ---
@@ -857,7 +863,7 @@ level: 2
 
 <!--
 Подведите итоги презентации. Подчеркните ключевые преимущества class-transformer.
-Дайте аудитории четкое понимание, зачем это нужно и как это поможет в их проектах.
+Дайте аудитории четкое понимание, зачем это нужно и как это поможет в их TypeScript проектах.
 -->
 
 ---

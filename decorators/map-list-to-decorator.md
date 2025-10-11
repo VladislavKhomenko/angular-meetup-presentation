@@ -2,7 +2,7 @@
 
 ## Описание
 
-`MapListTo` - это кастомный декоратор для Angular, который автоматически преобразует массивы plain objects или `EntityList` в экземпляры классов с помощью `class-transformer`.
+`MapListTo` - это кастомный декоратор для TypeScript, который автоматически преобразует массивы plain objects или `EntityList` в экземпляры классов с помощью `class-transformer`.
 
 ## Исходный код
 
@@ -56,16 +56,19 @@ export const MapListTo =
 ### Базовый пример
 
 ```typescript
-@Injectable()
 export class UserApiService {
   @MapListTo(User)
-  getUserList(params?: ListQueryParams<User>): Observable<EntityList<User>> {
-    return this.http.get('/api/users', { params });
+  async getUserList(params?: ListQueryParams<User>): Promise<EntityList<User>> {
+    const response = await fetch(`/api/users?${new URLSearchParams(params)}`);
+    const data = await response.json();
+    return plainToInstance(EntityList<User>, data);
   }
 
   @MapListTo(User)
-  getUsers(): Observable<User[]> {
-    return this.http.get('/api/users/all');
+  async getUsers(): Promise<User[]> {
+    const response = await fetch('/api/users/all');
+    const data = await response.json();
+    return plainToInstance(User, data);
   }
 }
 ```
@@ -74,28 +77,28 @@ export class UserApiService {
 
 ```typescript
 // Без декоратора (ручное преобразование)
-getUserList(): Observable<EntityList<User>> {
-  return this.http.get('/api/users').pipe(
-    map((data: any) => {
-      const users = data.result.map((userData: any) => ({
-        id: userData.id,
-        name: userData.name,
-        createdAt: new Date(userData.createdAt),
-        avatar: userData.avatar ? new Avatar(userData.avatar) : null
-      } as User));
+async getUserList(): Promise<EntityList<User>> {
+  const response = await fetch('/api/users');
+  const data = await response.json();
+  const users = data.result.map((userData: any) => ({
+    id: userData.id,
+    name: userData.name,
+    createdAt: new Date(userData.createdAt),
+    avatar: userData.avatar ? new Avatar(userData.avatar) : null
+  } as User));
 
-      return {
-        result: users,
-        pagination: data.pagination
-      } as EntityList<User>;
-    })
-  );
+  return {
+    result: users,
+    pagination: data.pagination
+  } as EntityList<User>;
 }
 
 // С декоратором (автоматическое преобразование)
 @MapListTo(User)
-getUserList(): Observable<EntityList<User>> {
-  return this.http.get('/api/users');
+async getUserList(): Promise<EntityList<User>> {
+  const response = await fetch('/api/users');
+  const data = await response.json();
+  return plainToInstance(EntityList<User>, data);
 }
 ```
 
@@ -105,8 +108,10 @@ getUserList(): Observable<EntityList<User>> {
 
 ```typescript
 @MapListTo(User)
-getUsers(): Observable<User[]> {
-  return this.http.get('/api/users/all');
+async getUsers(): Promise<User[]> {
+  const response = await fetch('/api/users/all');
+  const data = await response.json();
+  return plainToInstance(User, data);
 }
 
 // API возвращает: [{ id: "1", name: "John" }, { id: "2", name: "Jane" }]
@@ -117,8 +122,10 @@ getUsers(): Observable<User[]> {
 
 ```typescript
 @MapListTo(User)
-getUserList(params?: ListQueryParams<User>): Observable<EntityList<User>> {
-  return this.http.get('/api/users', { params });
+async getUserList(params?: ListQueryParams<User>): Promise<EntityList<User>> {
+  const response = await fetch(`/api/users?${new URLSearchParams(params)}`);
+  const data = await response.json();
+  return plainToInstance(EntityList<User>, data);
 }
 
 // API возвращает:
@@ -151,19 +158,17 @@ const getItemType = <T>(options?: TypeHelpOptions): Constructor<T> =>
 ### UsersApiService
 
 ```typescript
-@Injectable({
-  providedIn: 'root',
-})
 export class UsersApiService {
-  readonly #apiService = inject(ApiService);
-
   @MapListTo(User)
-  getUserList(params?: ListQueryParams<User>): Observable<EntityList<User>> {
-    return this.#apiService.getList<User>(USERS_BASE_PATH, params);
+  async getUserList(params?: ListQueryParams<User>): Promise<EntityList<User>> {
+    const response = await fetch(`/api/users?${new URLSearchParams(params)}`);
+    const data = await response.json();
+    return plainToInstance(EntityList<User>, data);
   }
 
-  getUsers(params?: ListQueryParams<User>): Observable<User[]> {
-    return this.getUserList(params).pipe(map(toResult));
+  async getUsers(params?: ListQueryParams<User>): Promise<User[]> {
+    const entityList = await this.getUserList(params);
+    return entityList.result;
   }
 }
 ```
@@ -171,16 +176,19 @@ export class UsersApiService {
 ### AccountsApiService
 
 ```typescript
-@Injectable()
 export class AccountsApiService {
   @MapListTo(Account)
-  getAccountList(params?: ListQueryParams<Account>): Observable<EntityList<Account>> {
-    return this.http.get('/api/accounts', { params });
+  async getAccountList(params?: ListQueryParams<Account>): Promise<EntityList<Account>> {
+    const response = await fetch(`/api/accounts?${new URLSearchParams(params)}`);
+    const data = await response.json();
+    return plainToInstance(EntityList<Account>, data);
   }
 
   @MapListTo(Account)
-  getAccountsByStatus(status: AccountStatus): Observable<Account[]> {
-    return this.http.get(`/api/accounts?status=${status}`);
+  async getAccountsByStatus(status: AccountStatus): Promise<Account[]> {
+    const response = await fetch(`/api/accounts?status=${status}`);
+    const data = await response.json();
+    return plainToInstance(Account, data);
   }
 }
 ```
