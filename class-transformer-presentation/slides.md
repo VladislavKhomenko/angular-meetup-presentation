@@ -1,6 +1,7 @@
 ---
 theme: seriph
-background: https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
+layout: image
+image: /backgrounds/media-image1.png
 title: DTO без боли
 info: |
   ## DTO без боли: как class-transformer упрощает жизнь
@@ -15,6 +16,10 @@ transition: slide-up
 mdc: true
 seoMeta:
   ogImage: auto
+colors:
+  primary: '#C3002F'
+  secondary: '#1976D2'
+  accent: '#FF6600'
 ---
 
 <style>
@@ -66,17 +71,60 @@ seoMeta:
 .slidev-layout .text-sm {
   font-size: 0.8rem;
 }
+
+/* Стили из PPTX шаблона */
+:root {
+  --color-primary: #C3002F;
+  --color-secondary: #1976D2;
+  --color-accent: #FF6600;
+  --color-dark: #1a1a1a;
+  --color-light: #ffffff;
+
+  * {
+    color: var(--color-dark);
+  }
+}
+
+.slidev-layout {
+  font-family: 'Inter';
+  padding: 2.5rem;
+  color: var(--color-dark);
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  font-family: 'Inter';
+  color: var(--color-dark);
+  font-weight: 700;
+}
+
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="flex justify-between items-start">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
+
+
+<div class="abs flex flex-col justify-center items-center h-100">
 
 # DTO без боли
 
 ## как class-transformer упрощает жизнь
 
-<!-- <div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover:bg="white hover:bg-opacity-10">
-    Погнали! <carbon:arrow-right class="inline"/>
-  </span>
-</div> -->
+</div>
+
+<div class="abs-bl m-6 flex gap-2 items-center">
+  <img class="w-125px h-115px rounded-[50%]" src="https://static.tildacdn.com/tild3239-3532-4537-b230-306365623135/Group_1321314990.png" />
+
+  <div class="flex flex-col gap-2 items-start">
+    <h4>Хоменко Владислав</h4><h5>Frontend Architect</h5>
+  </div>
+</div>
 
 <div class="abs-br m-6 flex gap-2">
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
@@ -87,35 +135,26 @@ seoMeta:
   </a>
 </div>
 
-<!--
-Привет! Меня зовут [Ваше имя], я Frontend Developer.
-
-Сегодня я расскажу о том, как class-transformer может кардинально упростить работу с DTO в TypeScript приложениях.
--->
-
 ---
 transition: slide-up
+layout: image
+image: /backgrounds/media-image1.png
 ---
 
-# О себе
-
-<div class="grid grid-cols-2 gap-8 pt-4 -mb-6">
-
-<div>
-
-## 👨‍💻 Кто я
-- **Frontend Architect**
-- **Опыт**: 10 лет опыта коммерческой разработки
-
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
 </div>
 
+<div class="grid grid-cols-2 gap-8 pt-4 mb-6">
+
 <div>
 
-## 🎯 О чем поговорим
-- Что такое DTO и зачем нужны
-- Проблемы сериализации данных
-- Решение проблемы
-- Реальные примеры из проекта
+# 🎯 О чем поговорим
+- #### Что такое DTO и зачем нужны
+- #### Проблемы сериализации данных
+- #### Решение проблемы
+- #### Реальные примеры из проекта
 
 </div>
 
@@ -129,12 +168,18 @@ transition: slide-up
 
 ---
 transition: slide-up
+layout: image
+image: /backgrounds/media-image1.png
 ---
 
-# Проблема сериализации данных
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
+
+<h1>Проблема сериализации данных</h1>
 
 <div class="grid grid-cols-2 gap-8 pt-4 -mb-6">
-
 <div>
 
 ### 🔴 API (Backend)
@@ -171,11 +216,18 @@ interface User {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
 
-# Проблемы сериализации
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
-## Несоответствие форматов данных
+<h1>Проблемы сериализации</h1>
+
+<h2>Несоответствие форматов данных</h2>
 
 <div class="p-3 bg-red-100 rounded-lg text-sm">
 
@@ -198,7 +250,14 @@ level: 2
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Проблемы с обычными объектами
 
@@ -228,7 +287,14 @@ const user = { name: "John", createdAt: "2024-01-15T10:30:00Z" };
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Ручное преобразование - это боль 😫
 
@@ -256,7 +322,14 @@ getUser(): Observable<User> {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Проблемы ручного подхода:
 
@@ -284,18 +357,32 @@ level: 2
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 <div class="flex justify-center items-center h-100">
 
-# А что если использовать классы??
+# А что если использовать классы???
 
 </div>
 
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Преимущества классов
 
@@ -314,7 +401,14 @@ level: 2
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Пример преимуществ
 
@@ -344,7 +438,14 @@ class User {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Первое улучшение: конструктор класса 👨‍🔧
 
@@ -360,11 +461,18 @@ getUser(): Observable<User> {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-3">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Но конструктор класса - это много кода 😰
 
-```typescript {all|16-20|21-22}
+```typescript {all|14-17|18-22}
 class User {
   // Примитивы - просто копируем
   id: string;
@@ -372,18 +480,15 @@ class User {
   
   // Даты - преобразуем вручную
   createdAt: Date;
-  updatedAt: Date;
   
   // Вложенные объекты - создаем вручную
   avatar: Avatar | null;
-
   roles: Role[]
   
   constructor(data: any) {
     this.id = data.id;
     this.email = data.email;
     this.createdAt = new Date(data.createdAt); // ❌ Ручное преобразование
-    this.updatedAt = new Date(data.updatedAt); // ❌ Ручное преобразование
     this.avatar = data.avatar ? new Avatar(data.avatar) : null; // ❌ Вручную проверяем и создаем
     this.roles = data.roles.map((role) => new Role(role)); // ❌ Ручное преобразование
   }
@@ -391,20 +496,38 @@ class User {
 ```
 
 ---
-layout: center
+layout: image
 class: text-center
+image: /backgrounds/media-image1.png
 ---
 
-# Знакомьтесь: class-transformer 🎯
+<div class="flex justify-between items-start">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
+<div class="flex flex-col justify-center items-center h-100">
+
+# Знакомьтесь: class-transformer 🎯
 <div class="text-2xl mt-8">
 TypeScript библиотека для автоматического<br>преобразования объектов в классы и обратно
 </div>
 
+</div>
+
+
+
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Что такое class-transformer?
 
@@ -437,7 +560,14 @@ level: 2
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Основные декораторы class-transformer
 
@@ -459,7 +589,14 @@ export class User {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Основные декораторы class-transformer
 
@@ -484,7 +621,14 @@ export class User {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Основные декораторы class-transformer
 
@@ -503,7 +647,14 @@ export class User {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Основные декораторы class-transformer
 
@@ -521,7 +672,14 @@ export class User {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Как это работает?
 
@@ -532,9 +690,6 @@ level: 2
 ```typescript
 class User {
   id: string;
-  
-  @Type(() => Date)  // ← Декоратор указывает тип
-  createdAt: Date;
   
   @Expose({ name: 'avatarId', toPlainOnly: true }) // Автоматически сериализует имя при отправке на бэкенд
   @Transform(toId, { toPlainOnly: true }) // ← Автоматически преобразует в id при отправке на бэкенд
@@ -556,7 +711,14 @@ class User {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-4">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Как это работает?
 
@@ -567,13 +729,11 @@ level: 2
 ```typescript
 // До
 const response = await fetch('/api/user');
-const json = await response.json();
-const user = new User(json); // ❌ Нужен конструктор с логикой
+const user = new User(response.json()); // ❌ Нужен конструктор с логикой
 
 // После
 const response = await fetch('/api/user');
-const json = await response.json();
-const user = plainToInstance(User, json); // ✅ Всё автоматически!
+const user = plainToInstance(User, response.json()); // ✅ Всё автоматически!
 ```
 
 </div>
@@ -591,7 +751,14 @@ const user = plainToInstance(User, json); // ✅ Всё автоматическ
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Решение с class-transformer
 
@@ -616,7 +783,14 @@ export class UserApiService {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Решение: class-transformer ✨
 
@@ -633,7 +807,14 @@ level: 2
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Решение с class-transformer
 
@@ -658,15 +839,28 @@ export class UserApiService {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
 
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 <img src="https://sticker-collection.com/stickers/plain/Dichset/512/aec2c11d-826c-430b-8623-56cc72400a01file_3836920.webp" alt="class-transformer magic" style="margin: 24px auto; display: block;" />
 
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Кастомные декораторы MapTo и MapListTo
 
@@ -689,8 +883,14 @@ export class UserApiService {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
 
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # MapTo - для одиночных объектов
 
@@ -716,7 +916,14 @@ export const MapTo =
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # MapListTo - для массивов
 
@@ -741,17 +948,23 @@ export const MapListTo =
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-4">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Helper mapInstanceToPlain
 
 ## Проблема: отправка данных на бэкенд
 
-```typescript {all|2-6|10-16}
+```typescript {all|2-6|9-15}
 // ❌ Проблема: как отправить User на бэкенд?
 updateUser(user: Partial<User>): Observable<User> {
-  // user.avatar - это объект Avatar
-  // но бэкенд ожидает avatarId: string
+  // user.avatar - это объект Avatar, но бэкенд ожидает avatarId: string
   return this.http.patch('/api/user', user); // ❌ Неправильно!
 }
 
@@ -771,14 +984,19 @@ updateUser(user: User): Observable<User> {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-2">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # UsersApiService - реальный пример
 
-```typescript {all|7-10|11-15|16-22}
-@Injectable({
-  providedIn: 'root',
-})
+```typescript {all|5-8|9-13|14-19}
+@Injectable({ providedIn: 'root' })
 export class UsersApiService {
   readonly #apiService = inject(ApiService);
 
@@ -795,7 +1013,6 @@ export class UsersApiService {
   @MapTo(User)
   updateUser(user: Partial<User>): Observable<User> {
     const transformedUser = mapInstanceToPlain(User, user);
-
     return this.#apiService.patch<User>(USERS_PROFILE_PATH, transformedUser);
   }
 }
@@ -805,7 +1022,14 @@ export class UsersApiService {
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Преимущества использования декораторов
 
@@ -834,7 +1058,14 @@ level: 2
 ---
 transition: slide-up
 level: 2
+layout: image
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
 
 # Лучшие практики
 
@@ -886,13 +1117,31 @@ level: 2
 -->
 
 ---
-layout: center
+layout: image
 class: text-center
+image: /backgrounds/media-image1.png
 ---
+
+<div class="flex justify-between items-start mb-6">
+  <img src="/backgrounds/media-image4.png" class="h-15" alt="Левое изображение" />
+  <img src="/backgrounds/media-image2.png" class="h-10" alt="Правое изображение" />
+</div>
+
+<div class="flex flex-col justify-center items-center h-100">
 
 # Спасибо за внимание!
 
 ## Вопросы и обсуждение
+
+<div class="pt-8 text-sm opacity-50">
+  <div>Полезные ссылки:</div>
+  <div class="flex justify-center gap-4 mt-2">
+    <a href="https://github.com/typestack/class-transformer" target="_blank">class-transformer</a>
+    <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank">TypeScript Decorators</a>
+  </div>
+</div>
+
+</div>
 
 <!-- <div class="pt-12">
   <div class="flex justify-center gap-4">
@@ -904,14 +1153,6 @@ class: text-center
     </a>
   </div>
 </div> -->
-
-<div class="pt-8 text-sm opacity-50">
-  <div>Полезные ссылки:</div>
-  <div class="flex justify-center gap-4 mt-2">
-    <a href="https://github.com/typestack/class-transformer" target="_blank">class-transformer</a>
-    <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank">TypeScript Decorators</a>
-  </div>
-</div>
 
 <!--
 Завершите презентацию благодарностью и призывом к вопросам.

@@ -8,12 +8,21 @@
     "export": "slidev export",
     "export-pdf": "slidev export --format pdf",
     "export-png": "slidev export --format png",
-    "export-pptx": "slidev export --format pptx"
+    "export-pptx": "slidev export --format pptx",
+    "extract-pptx": "node scripts/apply-pptx-template.js",
+    "apply-styles": "node scripts/apply-styles-to-slides.js",
+    "extract-backgrounds": "node scripts/extract-pptx-backgrounds.js",
+    "apply-backgrounds": "node scripts/apply-backgrounds.js",
+    "apply-multiple-backgrounds": "node scripts/apply-multiple-backgrounds.js",
+    "list-backgrounds": "node scripts/list-backgrounds.js"
   },
   "dependencies": {
     "@slidev/cli": "^52.1.0",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
     "vue": "^3.5.18"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.56.1"
   }
 }
