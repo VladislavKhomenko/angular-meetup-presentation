@@ -110,7 +110,7 @@ colors:
 </div>
 
 
-<div class="abs flex flex-col justify-center items-center h-100">
+<div class="absolute inset-0 flex flex-col justify-center items-center">
 
 # DTO без боли
 
