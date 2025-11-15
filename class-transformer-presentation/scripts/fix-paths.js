@@ -62,8 +62,23 @@ if (statSync(assetsPath).isDirectory()) {
       // Заменяем строки "/assets/" и "/backgrounds/" на правильные пути
       // Обрабатываем одинарные, двойные кавычки и template literals
       const before1 = content;
-      content = content.replace(/(["'`])\/assets\//g, `$1${basePath}/assets/`);
-      content = content.replace(/(["'`])\/backgrounds\//g, `$1${basePath}/backgrounds/`);
+      
+      // Заменяем пути с начальным слешем: "/assets/" -> "/angular-meetup-presentation/assets/"
+      // Но только если они еще не содержат basePath
+      content = content.replace(/(["'`])\/assets\/(?!angular-meetup-presentation)/g, `$1${basePath}/assets/`);
+      content = content.replace(/(["'`])\/backgrounds\/(?!angular-meetup-presentation)/g, `$1${basePath}/backgrounds/`);
+      
+      // Заменяем относительные пути в массивах: "assets/" -> "/angular-meetup-presentation/assets/"
+      // Это для __vite__mapDeps и других массивов с путями
+      // Но только если они еще не содержат basePath
+      content = content.replace(/(["'`])assets\/(?!angular-meetup-presentation)/g, `$1${basePath}/assets/`);
+      content = content.replace(/(["'`])backgrounds\/(?!angular-meetup-presentation)/g, `$1${basePath}/backgrounds/`);
+      
+      // Исправляем функцию li=function(t){return"/"+t} на правильный путь
+      // Заменяем return"/"+t на return"/angular-meetup-presentation/"+t
+      // Но только если она еще не исправлена
+      content = content.replace(/return"\/"\+t(?!angular-meetup-presentation)/g, `return"${basePath}/"+t`);
+      
       modified = before1 !== content;
       
       if (modified) {
