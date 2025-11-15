@@ -130,7 +130,7 @@ html[data-theme="dark"] {
 </div>
 
 <div class="abs-bl m-6 flex gap-2 items-center">
-  <img class="w-125px h-115px rounded-[50%]" src="https://static.tildacdn.com/tild3239-3532-4537-b230-306365623135/Group_1321314990.png" />
+  <img class="w-147px h-125px rounded-[50%]" src="https://static.tildacdn.com/tild3239-3532-4537-b230-306365623135/Group_1321314990.png" />
 
   <div class="flex flex-col gap-2 items-start">
     <h4>Хоменко Владислав</h4><h5>Frontend Architect</h5>
