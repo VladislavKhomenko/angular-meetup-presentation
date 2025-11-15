@@ -15,6 +15,7 @@ drawings:
 transition: slide-up
 mdc: true
 colorSchema: light
+routerMode: hash
 seoMeta:
   ogImage: auto
 colors:
