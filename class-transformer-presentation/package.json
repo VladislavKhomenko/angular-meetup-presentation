@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "build:pages": "slidev build --out ../docs && node scripts/fix-paths.js",
+    "build:pages": "slidev build --out ../docs",
     "dev": "slidev --open",
     "present": "slidev --open",
-    "fix-paths": "node scripts/fix-paths.js",
     "export": "slidev export",
     "export-pdf": "slidev export --format pdf",
     "export-png": "slidev export --format png",
